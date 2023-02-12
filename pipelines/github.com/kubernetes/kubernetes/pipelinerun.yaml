@@ -1,0 +1,25 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: dracon-github-com-kubernetes-kubernetes-
+  namespace: default
+spec:
+  serviceAccountName: dracon
+  pipelineRef:
+    name: dracon-github-com-kubernetes-kubernetes
+  params:
+  - name: repository_url
+    value: https://github.com/kubernetes/kubernetes.git
+  - name: consumer-elasticsearch-url
+    value: http://quickstart-es-http:9200
+  workspaces:
+  - name: source-code-ws
+    subPath: source-code
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
