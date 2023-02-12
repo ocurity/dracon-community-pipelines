@@ -1,0 +1,45 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: dracon-github-com-foo-project-
+  namespace: default
+spec:
+  serviceAccountName: dracon
+  pipelineRef:
+    name: dracon-github-com-foo-project
+  params:
+  - name: repository_url
+    value: <repo url>
+  - name: consumer-elasticsearch-url
+    value: http://quickstart-es-http:9200
+  - name: producer-docker-trivy-target
+    value: "ubuntu:latest"
+  - name: producer-docker-trivy-format
+    value: sarif
+    
+  - name: producer-docker-trivy-command
+    value: image
+  - name: enricher-policy-base64-policy
+    value: "cGFja2FnZSBleGFtcGxlLmdvc2VjCgpkZWZhdWx0IGFsbG93IDo9IGZhbHNlCgphbGxvdyA9dHJ1ZSB7CiAgICBwcmludChpbnB1dCkKICAgIGNoZWNrX3NldmVyaXR5Cn0KCmNoZWNrX3NldmVyaXR5IHsKICAgIGlucHV0LnNldmVyaXR5ID09ICJTRVZFUklUWV9MT1ciCn0KCmNoZWNrX3NldmVyaXR5IHsKICAgIGlucHV0LnNldmVyaXR5ID09ICJTRVZFUklUWV9ISUdIIgp9CmNoZWNrX3NldmVyaXR5IHsKICAgIGlucHV0LnNldmVyaXR5ID09ICJTRVZFUklUWV9NRURJVU0iCn0="
+  - name: consumer-slack-webhook
+    value: "https://hooks.slack.com/services/<webhook url>"
+  - name: consumer-jira-url
+    value: "<url of your jira instance>"
+  - name: consumer-jira-api-token
+    value: "jira api token for the bot that dracon can use"
+  - name: consumer-jira-user
+    value: "<bot account email address>"
+  - name: consumer-jira-config
+    value: |
+      {"defaultValues":{"project":"TEST","issueType":"Task","customFields":null},"addToDescription":["scan_start_time","tool_name","target","type","confidence_text","annotations"],"mappings":null}
+  workspaces:
+  - name: source-code-ws
+    subPath: source-code
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
