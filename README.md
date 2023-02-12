@@ -31,29 +31,7 @@ A collection of community contributed Dracon Pipelines look here for inspiration
     # Tekton Dashboard is now available at: http://localhost:8001/api/v1/namespaces/tekton-pipelines/services/tekton-dashboard:http/proxy/#/about
     ```
 
-4. Set up Kubernetes Private Registry Authentication:
-
-    ```bash
-    $ kubectl create secret docker-registry ghcr-creds \
-        --docker-server=https://ghcr.io \
-        --docker-username="$GITHUB_USER" \
-        --docker-password="$GITHUB_TOKEN" \
-        --docker-email="$GITHUB_EMAIL"
-    ```
-
-    ```
-    bash
-    $ cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: dracon
-secrets:
-  - name: ghcr-creds
-EOF
-    ```
-
-5. **Optional**: Install ECK and create an Elasticsearch + Kibana Dashboards. For more info, see [official documentation](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-deploy-eck.html).
+4. **Optional**: Install ECK and create an Elasticsearch + Kibana Dashboards. For more info, see [official documentation](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-deploy-eck.html).
 
     ```bash
     # Create ECK CRDs.
