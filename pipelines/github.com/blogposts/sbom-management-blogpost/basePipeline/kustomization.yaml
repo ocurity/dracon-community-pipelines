@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+nameSuffix: -sbom-project
+namespace: dracon
+
+resources:
+  - https://github.com/ocurity/dracon//components/base/
+
+components:
+  - https://github.com/ocurity/dracon//components/sources/git/
+  - https://github.com/ocurity/dracon//components/producers/aggregator/
+  - https://github.com/ocurity/dracon//components/producers/docker-trivy
+  - https://github.com/ocurity/dracon//components/enrichers/aggregator/
+  - https://github.com/ocurity/dracon//components/enrichers/depsdev/
+  - https://github.com/ocurity/dracon//components/consumers/elasticsearch/
+  - https://github.com/ocurity/dracon//components/consumers/dependency-track
