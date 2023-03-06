@@ -1,0 +1,38 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: dracon-sbom-project-
+  namespace: dracon
+spec:
+  pipelineRef:
+    name: dracon-sbom-project
+  params:
+  - name: repository_url
+    value:  $repo-url
+  - name: consumer-dependency-track-api-url
+    value: http://localhost:7070
+  - name: consumer-dependency-track-project-name
+    value: "$project-name"
+  - name: consumer-dependency-track-project-uuid
+    value: "$project-uuid"
+  - name: consumer-dependency-track-project-version
+    value: "v0.0.1"
+  - name: consumer-dependency-track-token
+    value: "$dt-token"
+  - name: producer-docker-trivy-format
+    value: "cyclonedx"
+  - name: producer-docker-trivy-command
+    value: "fs"
+
+
+  workspaces:
+  - name: source-code-ws
+    subPath: source-code
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
