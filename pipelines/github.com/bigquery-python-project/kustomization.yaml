@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+nameSuffix: -bigquery-python-project
+namespace: default
+
+resources:
+  - https://github.com/ocurity/dracon//components/base/
+
+components:
+  - https://github.com/ocurity/dracon//components/sources/git/
+  - https://github.com/ocurity/dracon//components/producers/aggregator/
+  - https://github.com/ocurity/dracon//components/producers/python-bandit/
+  - https://github.com/ocurity/dracon//components/producers/python-pip-safety/
+  - https://github.com/ocurity/dracon//components/enrichers/aggregator/
+  - https://github.com/ocurity/dracon//components/enrichers/deduplication/
+  - https://github.com/ocurity/dracon//components/consumers/bigquery
