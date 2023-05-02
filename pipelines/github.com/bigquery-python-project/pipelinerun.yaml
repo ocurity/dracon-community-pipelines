@@ -1,0 +1,28 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: dracon-bigquery-python-project-
+  namespace: dracon
+spec:
+  pipelineRef:
+    name: dracon-bigquery-python-project
+  params:
+  - name: repository_url
+    value: https://github.com/ocurity/e2e-monorepo.git
+  - name: consumer-bigquery-project-id
+    value: tmp-bigquery-test
+  - name: consumer-bigquery-dataset
+    value: dracon
+  - name: consumer-bigquery-token
+    value: $CONSUMER_BIGQUERY_TOKEN
+  workspaces:
+  - name: source-code-ws
+    subPath: source-code
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
