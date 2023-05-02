@@ -9,6 +9,6 @@ $ kustomize build | kubectl apply -f -
 # $ kustomize build
 
 export CONSUMER_BIGQUERY_TOKEN=$(gcloud auth application-default print-access-token)
-sed -i "s#\\\\$CONSUMER_BIGQUERY_TOKEN#$CONSUMER_BIGQUERY_TOKEN#g" pipelinerun.yaml
+sed -i 's#$CONSUMER_BIGQUERY_TOKEN#'"$CONSUMER_BIGQUERY_TOKEN"'#g' pipelinerun.yaml
 kubectl create -f pipelinerun.yaml
 ```
