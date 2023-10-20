@@ -6,13 +6,13 @@ nameSuffix: -github-com-kubernetes-kubernetes
 namespace: default
 
 resources:
-  - https://github.com/ocurity/dracon//components/base/
+  - https://github.com/ocurity/dracon/components/base/
 
 components:
-  - https://github.com/ocurity/dracon//components/sources/git/
-  - https://github.com/ocurity/dracon//components/producers/aggregator/
-  - https://github.com/ocurity/dracon//components/producers/golang-gosec/
-  - https://github.com/ocurity/dracon//components/producers/golang-nancy/
-  - https://github.com/ocurity/dracon//components/enrichers/aggregator/
-  - https://github.com/ocurity/dracon//components/enrichers/deduplication/
-  - https://github.com/ocurity/dracon//components/consumers/elasticsearch/
+  - https://github.com/ocurity/dracon/components/sources/git/
+  - https://github.com/ocurity/dracon/components/producers/aggregator/
+  - https://github.com/ocurity/dracon/components/producers/golang-gosec/
+  - https://github.com/ocurity/dracon/components/producers/golang-nancy/
+  - https://github.com/ocurity/dracon/components/enrichers/aggregator/
+  - https://github.com/ocurity/dracon/components/enrichers/deduplication/
+  - https://github.com/ocurity/dracon/components/consumers/elasticsearch/

@@ -14,5 +14,6 @@ components:
   - https://github.com/ocurity/dracon//components/producers/docker-trivy
   - https://github.com/ocurity/dracon//components/enrichers/aggregator/
   - https://github.com/ocurity/dracon//components/enrichers/depsdev/
+  - https://github.com/ocurity/dracon//components/enrichers/codeowners/
   - https://github.com/ocurity/dracon//components/consumers/elasticsearch/
   - https://github.com/ocurity/dracon//components/consumers/dependency-track
